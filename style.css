@@ -1,0 +1,788 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Nouvelle charte graphique demandée */
+    --bleu-nuit: #070b13; /* Fond sombre infini */
+    --bleu-nuit-rgb: 7, 11, 19;
+    --bleu-nuit-light: #0d1424; /* Couleur de section secondaire */
+    
+    --rose: #ff2a85; /* Accents et lueurs actives */
+    --rose-rgb: 255, 42, 133;
+    
+    --blanc: #ffffff; /* Texte principal */
+    
+    --acier: #94a3b8; /* Texte secondaire, icônes */
+    --acier-light: #cbd5e1; /* Métallique clair pour bordures */
+    --border-steel: rgba(148, 163, 184, 0.15);
+    
+    --brune: #3a271d; /* Chocolat chaud espresso pour les cartes */
+    --brune-light: #b8977e; /* Bronze doré pour accents chaleureux */
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #070b13 0%, #150f2b 50%, #ff2a85 100%);
+    --gradient-accent: linear-gradient(135deg, var(--rose), var(--brune-light));
+    --gradient-steel: linear-gradient(135deg, var(--acier), var(--blanc));
+    
+    --shadow-rose: 0 8px 30px rgba(255, 42, 133, 0.2);
+    --shadow-sm: 0 4px 20px rgba(7, 11, 19, 0.3);
+    --shadow-md: 0 12px 40px rgba(7, 11, 19, 0.5);
+    --shadow-lg: 0 24px 60px rgba(255, 42, 133, 0.15);
+    
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 32px;
+    
+    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- STRUCTURE & FOND GÉNÉRAL --- */
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bleu-nuit);
+    color: var(--blanc);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Sélection de texte personnalisée */
+::selection {
+    background-color: rgba(255, 42, 133, 0.35);
+    color: var(--blanc);
+}
+
+/* --- GLOWS AMBIANTS DE FOND (Midnight Neon Aesthetics) --- */
+body::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(255, 42, 133, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 1000px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(184, 151, 126, 0.08) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- BARRE DE NAVIGATION (Midnight Glassmorphism) --- */
+header {
+    background: rgba(7, 11, 19, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-steel);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+header:hover {
+    background: rgba(7, 11, 19, 0.9);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--rose);
+    background: linear-gradient(135deg, var(--rose), var(--brune-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.03);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--acier);
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    padding: 6px 0;
+    transition: var(--transition);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rose), var(--brune-light));
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--blanc);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* --- SECTIONS SPACING & HEADINGS --- */
+section {
+    padding: 100px 8% 80px 8%;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: var(--blanc);
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), var(--brune-light));
+    margin: 15px auto 0 auto;
+    border-radius: 2px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--acier);
+    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* --- BOUTONS GENERAUX --- */
+.btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--rose), var(--brune-light));
+    color: var(--blanc);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-rose);
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #e01d6f, #a0816a);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 42, 133, 0.4);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+/* --- ACCUEIL & CAROUSEL (Gradient Hero Section) --- */
+#accueil {
+    position: relative;
+    height: 85vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: var(--bleu-nuit);
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: 0 !important;
+}
+
+.slider-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.8s ease-in-out, transform 1.8s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Le Gradient Hero immersif demandé par l'utilisateur */
+.slider-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-hero);
+    opacity: 0.85; /* Laisse transparaître les images avec un effet néon très luxueux */
+    z-index: 2;
+}
+
+.carousel-content {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    text-align: center;
+    color: var(--blanc);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.carousel-content h1 {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, var(--blanc) 30%, var(--acier-light) 70%, var(--rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.carousel-content .subtitle {
+    font-size: 19px;
+    color: var(--acier-light);
+    font-style: normal;
+    margin-bottom: 25px;
+    max-width: 700px;
+    line-height: 1.5;
+}
+
+.profile-button {
+    display: inline-block;
+    padding: 16px 38px;
+    background: linear-gradient(135deg, var(--rose), var(--brune-light));
+    color: var(--blanc);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-rose);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(255, 42, 133, 0.45);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* --- BANNIERE PRESENTATION DYNAMIQUE --- */
+.cursor {
+    font-weight: 300;
+    color: var(--rose);
+    animation: blink 0.9s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- PARCOURS & EXPÉRIENCES (Timeline) --- */
+#parcours {
+    background-color: var(--bleu-nuit-light);
+    border-bottom: 1px solid var(--border-steel);
+}
+
+.parcours-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cv-colonne h3, .skills-colonne h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    color: var(--blanc);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid rgba(148, 163, 184, 0.1);
+    padding-bottom: 15px;
+}
+
+.cv-colonne h3 .icon, .skills-colonne h3 .icon {
+    font-size: 24px;
+    color: var(--rose);
+}
+
+/* Cartes CV stylisées en Brune espresso demandée */
+.cv-item {
+    margin-bottom: 35px;
+    border-left: 2px solid var(--rose);
+    padding: 20px 24px;
+    background: rgba(61, 42, 29, 0.15); /* Subtile texture brune */
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border: 1px solid rgba(184, 151, 126, 0.05);
+    border-left-width: 2px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.cv-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 25px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--bleu-nuit-light);
+    border: 3px solid var(--rose);
+    transition: var(--transition);
+}
+
+.cv-item:hover {
+    background: rgba(61, 42, 29, 0.35); /* Plus brun chaleureux au survol */
+    border-color: rgba(255, 42, 133, 0.2);
+    transform: translateX(4px);
+}
+
+.cv-item:hover::before {
+    border-color: var(--blanc);
+    background-color: var(--rose);
+    transform: scale(1.3);
+}
+
+.cv-item h4 {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--blanc);
+    margin-bottom: 6px;
+}
+
+.cv-date {
+    font-size: 13px;
+    color: var(--rose);
+    background: rgba(255, 42, 133, 0.1);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 42, 133, 0.15);
+}
+
+.cv-item p {
+    color: var(--acier);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* --- BARRES DE COMPÉTENCES (Skills) --- */
+.skill-bar-container {
+    margin-bottom: 30px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--acier-light);
+    margin-bottom: 10px;
+}
+
+.skill-bar {
+    background-color: rgba(148, 163, 184, 0.08);
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.05);
+}
+
+.skill-progress {
+    background: linear-gradient(90deg, var(--rose), var(--brune-light));
+    height: 100%;
+    border-radius: 10px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    filter: blur(1px);
+}
+
+/* --- PORTFOLIO & REALISATIONS (Galerie Grid) --- */
+#portfolio {
+    background-color: var(--bleu-nuit);
+}
+
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.galerie-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--bleu-nuit-light);
+    border: 1px solid var(--border-steel);
+    height: 380px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.galerie-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- EFFET AVANT / APRES --- */
+.avant-apres-container {
+    position: relative;
+}
+
+.photo-avant {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avant-apres-container:hover .photo-avant {
+    opacity: 0;
+    transform: scale(1.05);
+}
+
+.galerie-item:hover img:not(.photo-avant) {
+    transform: scale(1.06);
+}
+
+/* Overlay esthétique sombre */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(7, 11, 19, 0.95) 0%, rgba(7, 11, 19, 0.4) 60%, transparent 100%);
+    color: var(--blanc);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.galerie-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(255, 42, 133, 0.3);
+}
+
+.galerie-item:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--blanc);
+    letter-spacing: -0.5px;
+}
+
+.overlay p {
+    font-size: 14px;
+    color: var(--acier);
+    line-height: 1.4;
+}
+
+/* --- LIGHTBOX POPUP --- */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2500;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 11, 19, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 75%;
+    border-radius: var(--radius-md);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: zoomIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#lightbox-caption {
+    color: var(--blanc);
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 44px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close-lightbox:hover {
+    color: var(--rose);
+    transform: scale(1.1) rotate(90deg);
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- FORMULAIRE DE CONTACT (Midnight Glassmorphism) --- */
+#contact {
+    background-color: var(--bleu-nuit-light);
+    border-top: 1px solid var(--border-steel);
+}
+
+.form-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: rgba(7, 11, 19, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 50px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-steel);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fond décoratif subtil à l'intérieur du formulaire */
+.form-container::before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: -50px;
+    right: -50px;
+    background: radial-gradient(circle, rgba(255, 42, 133, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.form-container h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+    color: var(--blanc);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--acier-light);
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    background-color: rgba(7, 11, 19, 0.5);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--blanc);
+    transition: var(--transition);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--rose);
+    background-color: rgba(7, 11, 19, 0.8);
+    box-shadow: 0 0 0 4px rgba(255, 42, 133, 0.15);
+}
+
+.form-group textarea {
+    height: 140px;
+    resize: none;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #04060b;
+    color: var(--acier);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+footer p {
+    letter-spacing: 0.5px;
+}
+
+/* --- CODE RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .parcours-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 6% 60px 6%;
+    }
+    
+    header {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    nav {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .carousel-content h1 {
+        font-size: 36px;
+    }
+    
+    .carousel-content .subtitle {
+        font-size: 15px;
+    }
+    
+    h2 {
+        font-size: 30px;
+    }
+    
+    .form-container {
+        padding: 30px;
+    }
+    
+    .close-lightbox {
+        top: 20px;
+        right: 20px;
+        font-size: 36px;
+    }
+}
